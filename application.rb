@@ -11,7 +11,6 @@ require 'date'
 		@emails = []
 		@phone_numbers = []
 	end
-
 	def add_emails(input_email)
 		@emails.push(input_email)
 	end
@@ -23,6 +22,26 @@ require 'date'
 	def remove_emails(index)
 		@emails.delete_at(index)
 	end
+end
 
+class FamilyMember < Person
+	attr_reader :relationship
+	def initialize(name,sname,dob,relationship)
+		super(name,sname,dob)
+		@relationship = relationship
+	end
+end
 
+class PhoneBook < Person	
+	attr_reader :list
+	def initialize
+		@list = []
+	end
+	def add(person)
+		person.is_a?(Person) || person.is_a?(FamilyMember) ? @list.push(person.fullname) : "Not family member or person" 
+	end
+end
+
+class Imposter
+	attr_accessor :thing
 end
